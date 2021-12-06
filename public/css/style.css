@@ -7,6 +7,28 @@ body {
     top: 0;
     bottom: 0;
     font-family: 'Lato', sans-serif;
+    background-color: #f2f2f2;
+}
+
+a {
+    text-decoration: none;
+}
+
+h2 {
+    font-size: 50px;
+    margin: 0;
+}
+
+h3 {
+    font-size: 14px;
+    color: #696969;
+    font-weight: 100;
+    font-style: italic;
+}
+
+p {
+    font-size: 18px;
+    color: #666;
 }
 
 .top-nav {
@@ -156,4 +178,74 @@ input::placeholder {
     margin: 0 auto;
     width: 80%;
     padding: 100px 0px;
+}
+
+.container-item {
+    border-bottom: 1px solid #dcdcdc;
+    padding: 40px 0px;
+}
+
+.btn {
+    padding: 8px 18px;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: hsl(0, 0%, 100%);
+}
+
+.btn:hover {
+    color: hsl(0, 0%, 100%);
+}
+
+.green {
+    background-color: hsl(122, 39%, 49%);
+}
+
+.green:hover {
+    background-color: hsl(120, 28%, 52%);
+    transition: 0.20s ease-in-out;
+}
+
+/* Create Post */
+.center {
+    text-align: center;
+}
+
+input,
+textarea {
+    width: 400px;
+    margin: 20px 0px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 4px;
+    background-color: hsl(0, 0%, 96%);
+    padding: 8px;
+    font-size: 18px;
+    color: hsl(0, 0%, 40%);
+}
+
+input {
+    height: 35px;
+}
+
+textarea {
+    height: 200px;
+}
+
+::placeholder {
+    font-size: 14px;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.orange {
+    background-color: hsl(39, 100%, 50%);
+    color: hsl(0, 0%, 0%);
+    float: right;
+}
+
+.red {
+    background-color: hsl(0, 100%, 50%);
+    float: right;
+    width: 120px;
+    margin: 0px 20px;
+    height: 40px;
 }
