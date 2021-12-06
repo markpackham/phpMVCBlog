@@ -25,8 +25,39 @@ class Posts extends Controller
             'title' => '',
             'body' => '',
             'titleError' => '',
-            'bodyError' => '',
+            'bodyError' => ''
         ];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'user_id' => $_SESSION['user_id'],
+                'title' => trim($_POST['title']),
+                'body' => trim($_POST['body']),
+                'titleError' => '',
+                'bodyError' => ''
+            ];
+
+            if (empty($data['title'])) {
+                $data['titleError'] = 'Title must not be empty';
+            }
+
+            if (empty($data['body'])) {
+                $data['bodyError'] = 'Body must not be empty';
+            }
+
+            if (empty($data['titleError']) && empty($data['bodyError'])) {
+                if ($this->postModel->addPost($data)) {
+                    header("Location: " . URLROOT . "/posts");
+                } else {
+                    die("Please try again, something went wrong");
+                }
+            } else {
+                $this->view('posts/create', $data);
+            }
+        }
+
         $this->view('posts/create', $data);
     }
 
