@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 12:10 PM
+-- Generation Time: Dec 06, 2021 at 12:48 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -55,10 +55,17 @@ INSERT INTO `posts` (`id`, `user_id`, `title`, `body`, `created_at`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `user` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
+(1, 'password123', 'password123@email.com', '$2y$10$IkedE6.SpTWqpGF36MPHDOaWJL.DNHhxMnr2UCEXUTn8eXGpL6mm.');
 
 --
 -- Indexes for dumped tables
@@ -90,7 +97,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
