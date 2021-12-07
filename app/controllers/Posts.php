@@ -61,8 +61,10 @@ class Posts extends Controller
         $this->view('posts/create', $data);
     }
 
+
     public function update($id)
     {
+
         $post = $this->postModel->findPostById($id);
 
         if (!isLoggedIn()) {
@@ -72,12 +74,85 @@ class Posts extends Controller
         }
 
         $data = [
-            'post' => $post
+            'post' => $post,
+            'title' => '',
+            'body' => '',
+            'titleError' => '',
+            'bodyError' => ''
         ];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            $data = [
+                'id' => $id,
+                'post' => $post,
+                'user_id' => $_SESSION['user_id'],
+                'title' => trim($_POST['title']),
+                'body' => trim($_POST['body']),
+                'titleError' => '',
+                'bodyError' => ''
+            ];
+
+            if (empty($data['title'])) {
+                $data['titleError'] = 'The title of a post cannot be empty';
+            }
+
+            if (empty($data['body'])) {
+                $data['bodyError'] = 'The body of a post cannot be empty';
+            }
+
+            // Checks to see if the user has actually bothered to update anything
+            // if ($data['title'] == $this->postModel->findPostById($id)->title) {
+            //     $data['titleError'] == 'Please at least change the title!';
+            // }
+
+            // if ($data['body'] == $this->postModel->findPostById($id)->body) {
+            //     $data['bodyError'] == 'Please at least change the body!';
+            // }
+
+            if (empty($data['titleError']) && empty($data['bodyError'])) {
+                if ($this->postModel->updatePost($data)) {
+                    header("Location: " . URLROOT . "/posts");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('posts/update', $data);
+            }
+        }
+
         $this->view('posts/update', $data);
     }
 
-    public function delete()
+
+    public function delete($id)
     {
+
+        $post = $this->postModel->findPostById($id);
+
+        if (!isLoggedIn()) {
+            header("Location: " . URLROOT . "/posts");
+        } elseif ($post->user_id != $_SESSION['user_id']) {
+            header("Location: " . URLROOT . "/posts");
+        }
+
+        $data = [
+            'post' => $post,
+            'title' => '',
+            'body' => '',
+            'titleError' => '',
+            'bodyError' => ''
+        ];
+
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+            if ($this->postModel->deletePost($id)) {
+                header("Location: " . URLROOT . "/posts");
+            } else {
+                die('Something went wrong!');
+            }
+        }
     }
 }
