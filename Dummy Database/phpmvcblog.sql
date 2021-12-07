@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 12:48 PM
+-- Generation Time: Dec 07, 2021 at 03:33 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -40,12 +40,13 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `title`, `body`, `created_at`) VALUES
-(1, 1, 'My 1st post', 'Some text', '2021-12-06 10:37:07'),
+(1, 1, 'My 1st post', 'Some text super cool', '2021-12-06 10:37:07'),
 (2, 1, 'This is my 2nd post', 'Some text again', '2021-12-06 10:37:07'),
 (3, 2, 'User 2 posts', 'Hi I\'m user 2', '2021-12-06 10:37:40'),
 (4, 2, 'User 2 posts again', 'Yes I am posting again', '2021-12-06 10:37:40'),
 (5, 3, 'User 3 is now posting', 'User 3 doesn\'t have much to say', '2021-12-06 10:38:58'),
-(6, 3, 'User 3 likes to speak in the 3rd person', 'User 3 has an interesting fact, User 3 is the 3rd user to have registered to this site. User 3 is so interesting.', '2021-12-06 10:38:58');
+(6, 3, 'User 3 likes to speak in the 3rd person', 'User 3 has an interesting fact, User 3 is the 3rd user to have registered to this site. User 3 is so interesting.', '2021-12-06 10:38:58'),
+(8, 1, 'My 3rd Post', 'Here is the third post', '2021-12-07 13:55:40');
 
 -- --------------------------------------------------------
 
@@ -91,7 +92,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `users`
